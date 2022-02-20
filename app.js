@@ -32,5 +32,3 @@ prevBtn.addEventListener("click", (e) => {
 setInterval(() => {
     nextBtn.click()
 }, 4000)
-
-console.log(new Date())
