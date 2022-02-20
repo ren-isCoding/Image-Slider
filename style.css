@@ -16,11 +16,11 @@ body {
 
 .slider {
     width: 800px;
-    height: auto;
     border-radius: 10px;
     overflow: hidden;
     position: relative;
     display: flex;
+    justify-content: center;
 }
 
 .imgs-container {
@@ -30,13 +30,12 @@ body {
 
 img {
     max-width: 100%;
-    height: auto;
 }
 
 .slide-btn {
     position: absolute;
     align-self: center;
-    height: 60%;
+    height: 10%;
     width: 10%;
     background: none;
     border: none;
@@ -47,7 +46,7 @@ img {
     transition: 150ms;
 }
 
-.slide-btn:hover {
+.slider:hover .slide-btn {
     opacity: 1;
 }
 
@@ -57,4 +56,28 @@ img {
 
 #nextBtn {
     right: 0;
+}
+
+.hide {
+    display: none;
+}
+
+.custom-radio-btns {
+    position: absolute;
+    bottom: 1rem;
+    display: flex;
+    gap: 1rem;
+}
+
+input[type="radio"]:checked + label {
+    background-color: #23e3c9;
+}
+
+.radio-btn {
+    width: 0.8rem;
+    height: 0.8rem;
+    border: 0.15rem solid rgba(245, 245, 245, 0.658);
+    border-radius: 100%;
+    cursor: pointer;
+    transition: 200ms;
 }

@@ -2,33 +2,44 @@ let imgsContainer = document.querySelector(".imgs-container")
 let imgs = document.querySelectorAll(".imgs-container img")
 let prevBtn = document.querySelector("#prevBtn")
 let nextBtn = document.querySelector("#nextBtn")
+let radioBtns = document.querySelectorAll(".radio")
 
-let counter = 1
-let numberOfImgs = imgs.length
+let counter = 0
+let numberOfImgs = imgs.length - 1
 
 nextBtn.addEventListener("click", (e) => {
-    imgsContainer.style.transform +=
-        "translateX(" + (-imgsContainer.offsetWidth + "px)")
     counter++
-    if (counter > numberOfImgs) {
-        imgsContainer.style.transform = "translateX(0)"
-        counter = 1
-    }
-    console.log(counter)
+    setCurrentSlide()
 })
 prevBtn.addEventListener("click", (e) => {
-    imgsContainer.style.transform +=
-        "translateX(" + (+imgsContainer.offsetWidth + "px)")
     counter--
-    if (counter < 1) {
-        imgsContainer.style.transform =
-            "translateX(" +
-            (-imgsContainer.offsetWidth * (numberOfImgs - 1) + "px)")
-        counter = numberOfImgs
-    }
-    console.log(counter)
+    setCurrentSlide()
 })
 
-setInterval(() => {
+let timer = setInterval(clickNext, 4000)
+function clickNext() {
     nextBtn.click()
-}, 4000)
+}
+
+function setCurrentSlide() {
+    if (counter < 0) {
+        counter = numberOfImgs
+    }
+    if (counter > numberOfImgs) {
+        counter = 0
+    }
+    imgsContainer.style.transform = "translateX(" + (-imgsContainer.offsetWidth * counter + "px)")
+    radioBtns[counter].checked = true
+
+    if (timer) clearInterval(timer)
+    timer = setInterval(clickNext, 4000)
+}
+
+radioBtns.forEach((btn) =>
+    btn.addEventListener("click", () => {
+        counter = btn.dataset.i
+        setCurrentSlide()
+    })
+)
+
+setCurrentSlide()
