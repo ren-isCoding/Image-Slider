@@ -43,7 +43,7 @@ img {
     font-size: 3rem;
     cursor: pointer;
     opacity: 0;
-    transition: 150ms;
+    transition: 150ms ease-in-out;
 }
 
 .slider:hover .slide-btn {
